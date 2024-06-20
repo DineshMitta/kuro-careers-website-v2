@@ -9,15 +9,9 @@ app.config["SECRET_KEY"]="123"
 app.config["MONGO_URI"] = "mongodb+srv://Dinesh:miyuki767%40@dineshdatabase.qrsx5on.mongodb.net/KuroCareersWebsite"
 mongo=PyMongo(app)
 
+ud_data={
+    "email":"add@gmail.com"
+}
 
-
-@app. route( "/" )
-def helloworld():
-    data=mongo.db.jobopenings.find_one()
-    return render_template('home.html',company_name='Kuro',data=data)
-
-
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True)
+data=mongo.db.jobopenings.insert_one(ud_data)
+print("Data Added")
