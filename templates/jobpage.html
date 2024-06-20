@@ -10,8 +10,14 @@
     <h3>Location</h3>
     <p>{{ job.location }}</p>
 
-    <h3>Salary</h3>
+    
+    {% if 'salary' in job %}
+    <div>
+        <h3>Salary</h3>
     <p>{{ job.currency }}{{ job.salary }}</p>
+    </div>
+    {% endif %} 
+    
 
     <h3>Responsibilities</h3>
     <p>{{ job.responsibilities }}</p>
