@@ -9,12 +9,13 @@ app.config["SECRET_KEY"]="123"
 app.config["MONGO_URI"] = "mongodb+srv://Dinesh:miyuki767%40@dineshdatabase.qrsx5on.mongodb.net/KuroCareersWebsite"
 mongo=PyMongo(app)
 
-
+ 
 
 @app. route( "/" )
 def helloworld():
-    data=mongo.db.jobopenings.find_one()
-    return render_template('home.html',company_name='Kuro',data=data)
+    data=mongo.db.jobopenings.find()
+    return render_template('home.html',company_name='Kuro',jobs=data)
+
 
 
 
