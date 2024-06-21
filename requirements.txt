@@ -1,3 +1,4 @@
 Flask
 gunicorn
+pymongo[srv]
 flask_pymongo
