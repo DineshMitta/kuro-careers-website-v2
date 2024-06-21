@@ -3,19 +3,12 @@
     <head>
         <title>Kuro Careers</title>
        {% include 'bootstrap.html' %}
-        <style>
-            #banner{
-                height: 560px;
-                width: 100%;
-                object-fit: cover;
-                margin-bottom: 16px;
-
-            }   
-        </style>
+        
     </head>
     <body>
         {% include 'nav.html' %}
-        <img class="img-fluid" id="banner" src="/static/fuel.jpg" height="320">
+        {% include 'banner.html' %}
+      
         <div class="container">
             <h1 class="text-center mt-2 mb-4"> {{company_name}} Careers</h1>
             
