@@ -47,7 +47,7 @@ def show_job(id):
     
     job = load_job_by_id(id)
     if job:
-        return render_template('jobpage.html', job=job)
+        return render_template('jobpage.html', company_name='Kuro', job=job)
     else:
         return jsonify({"message": "Job not found"}), 404
 
