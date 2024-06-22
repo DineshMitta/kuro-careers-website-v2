@@ -10,7 +10,7 @@ app.config["MONGO_URI"] = "mongodb+srv://Dinesh:miyuki767%40@dineshdatabase.qrsx
 mongo=PyMongo(app)
 
 
-client = MongoClient('mongodb+srv://Dinesh:miyuki767%40@dineshdatabase.qrsx5on.mongodb.net/KuroCareersWebsite')
+client = MongoClient('mongodb+srv://Dinesh:miyuki767%40@dineshdatabase.qrsx5on.mongodb.net/KuroCareersWebsite?ssl=true&ssl_cert_reqs=CERT_NONE')
 db = client['dineshdatabase']
 jobs_collection = db['jobopenings']
 data=mongo.db.jobopenings.find()
