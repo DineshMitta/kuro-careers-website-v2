@@ -5,21 +5,20 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 app.config["SECRET_KEY"]="123"
+app.config["MONGO_URI"] = "mongodb+srv://Dinesh:miyuki767%40@dineshdatabase.qrsx5on.mongodb.net/KuroCareersWebsite?retryWrites=true&w=majority"
 
-app.config["MONGO_URI"] = "mongodb+srv://Dinesh:miyuki767%40@dineshdatabase.qrsx5on.mongodb.net/KuroCareersWebsite"
 mongo=PyMongo(app)
 
 
-client = MongoClient('mongodb+srv://Dinesh:miyuki767%40@dineshdatabase.qrsx5on.mongodb.net/KuroCareersWebsite?ssl=true&ssl_cert_reqs=CERT_NONE')
-db = client['dineshdatabase']
-jobs_collection = db['jobopenings']
-data=mongo.db.jobopenings.find()
+
 
 
 @app. route( "/" )
 def helloworld():
-    
-    return render_template('home.html',company_name='Kuro',jobs=data)
+    jobs = list(mongo.db.jobopenings.find())
+    for job in jobs:
+        job['_id'] = str(job['_id'])  # Convert ObjectId to string for JSON serialization
+    return render_template('home.html', company_name='Kuro', jobs=jobs)
 
 
 def load_job_by_id(job_id):
