@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from pymongo import MongoClient
@@ -51,6 +51,14 @@ def show_job(id):
     else:
         return jsonify({"message": "Job not found"}), 404
 
+
+@app.route("/api/job/<id>/apply", methods=['post'])
+def apply_to_job(id):
+    data = request.form
+    job = load_job_by_id(id)
+
+
+    return render_template('application_submitted.html',application=data, job=job)
 
 
 
