@@ -52,15 +52,42 @@ def show_job(id):
         return jsonify({"message": "Job not found"}), 404
 
 
-@app.route("/api/job/<id>/apply", methods=['post'])
+
+
+
+
+def add_job_application(job_id, application):
+    """
+    Insert a job application into the MongoDB collection.
+    """
+    application_data = {
+        "job_id": ObjectId(job_id),
+        "full_name": application.get("full_name"),
+        "email": application.get("email"),
+        "linkedin_url": application.get("linkedin_url"),
+        "education": application.get("education"),
+        "experience": application.get("experience"),
+        "resume_url": application.get("resume_url")
+    }
+    result = mongo.db.jobopenings.insert_one(application_data)
+    return str(result.inserted_id)
+
+@app.route("/api/job/<id>/apply", methods=["POST"])
 def apply_to_job(id):
+    """
+    Endpoint to apply for a job.
+    """
     data = request.form
     job = load_job_by_id(id)
-
-
+    if not data:
+        return jsonify({"error": "No application data provided"}), 400
+    
+    application_id = add_job_application(id, data)
     return render_template('application_submitted.html',application=data, job=job)
-
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
+    
+
+
+    
