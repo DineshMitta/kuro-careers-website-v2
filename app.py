@@ -85,6 +85,16 @@ def apply_to_job(id):
     application_id = add_job_application(id, data)
     return render_template('application_submitted.html',application=data, job=job)
 
+
+@app.route("/login/")
+def login_user():
+    return render_template('login.html')
+
+
+@app.route("/register/")
+def register_user():
+    return render_template('register.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
     
