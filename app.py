@@ -95,6 +95,10 @@ def login_user():
 def register_user():
     return render_template('register.html')
 
+@app.route("/forgot/")
+def forgotpassword():
+    return render_template('forgotpassword.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
     
